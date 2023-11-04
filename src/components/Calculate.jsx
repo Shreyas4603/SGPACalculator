@@ -13,6 +13,9 @@ const Calculate = () => {
     const [selectedSemester, setSelectedSemester] = useState("default");
     const [marks, setMarks] = useState({});
     const [sgpa, setSgpa] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [info, setInfo] = useState(true);
+
 
     const getValue = (value) => {
         setSelectedSemester(value);
@@ -20,9 +23,10 @@ const Calculate = () => {
         setSgpa(0)
     }
 
-    const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(!open);
+    const handleInfo = () => setInfo(!info);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -98,6 +102,13 @@ const Calculate = () => {
                 <DialogHeader className='flex items-center justify-between font-[poppins]'>Result<Button onClick={handleOpen} className='bg-red-500 px-4 rounded-md py-2 font-[poppins]'>X</Button></DialogHeader>
                 <DialogBody className='text-center text-3xl font-[poppins] font-bold '>
                     Your SGPA is {sgpa.toFixed(2)}
+                </DialogBody>
+            </Dialog>
+
+            <Dialog open={info} handler={handleInfo} size='xs' className='bg-[#02080d] w-[300px] font-[poppins]  border-2 text-center border-[#64519a]'>
+                <DialogHeader className='flex items-center justify-between font-[poppins] text-gray-500'>Information<Button onClick={handleInfo} className='bg-red-500 px-4 rounded-md py-2 font-[poppins]'>X</Button></DialogHeader>
+                <DialogBody className='text-center text-lg font-[poppins] font-bold text-white '>
+                    If you have not written the exam , leave it blank.
                 </DialogBody>
             </Dialog>
         </div>
